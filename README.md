@@ -108,8 +108,9 @@ Options:
 
 ## Legal
 
-- [Privacy Policy](./PRIVACY_POLICY.md)
-- [Terms of Service](./TERMS_OF_SERVICE.md)
+- [Privacy Policy](https://ghostdrop.qzz.io/#privacy)
+- [Terms of Service](https://ghostdrop.qzz.io/#tos)
+
 
 ## License
 
