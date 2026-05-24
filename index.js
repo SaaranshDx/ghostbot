@@ -1,11 +1,9 @@
 require("dotenv/config");
-const { Routes, REST, } = require("discord.js");
-const deployCommands = async () => {
-
-}
 
 const {
   Client,
+  Routes,
+  REST,
   GatewayIntentBits,
   Collection,
   Events,
@@ -48,7 +46,28 @@ for (const file of commandFiles) {
   }
 }
 
-Client.on(Events.ClientReady, () => {
+const deployCommands = async () => {
+  const commands = [];
+  for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    if ("data" in command) commands.push(command.data.toJSON());
+  }
+
+  const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
+
+  try {
+    console.log(`Deploying ${commands.length} commands...`);
+    const data = await rest.put(
+      Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+      { body: commands },
+    );
+    console.log(`Deployed ${data.length} commands successfully`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+client.once(Events.ClientReady, async () => {
   console.log(`Logged in as ${client.user.tag}`);
   await deployCommands();
   console.log("Commands deployed");
