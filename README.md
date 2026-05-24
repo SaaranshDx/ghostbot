@@ -106,6 +106,11 @@ Options:
 
 - Some replies are ephemeral to avoid exposing passwords or file links more than necessary.
 
+## Legal
+
+- [Privacy Policy](./PRIVACY_POLICY.md)
+- [Terms of Service](./TERMS_OF_SERVICE.md)
+
 ## License
 
 Licensed under the terms of the [LICENSE](./LICENSE) file.
