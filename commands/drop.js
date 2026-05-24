@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { getApiUrl } = require('../utils/api');
 
-const MAX_FILE_SIZE_BYTES = 100_000_000;
+const MAX_FILE_SIZE_BYTES = 4_500_000;
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -34,7 +34,7 @@ module.exports = {
     const password = interaction.options.getString('password');
 
     if (attachment.size > MAX_FILE_SIZE_BYTES) {
-      await interaction.editReply('❌ This bot only accepts files up to 100 MB.');
+      await interaction.editReply('❌ GhostDrop only accepts files up to about 4.5 MB.');
       return;
     }
 
@@ -86,8 +86,8 @@ module.exports = {
       }
 
       const fileId = payload.id;
-      const publicUrl = new URL(`/${fileId}/`, `${apiUrl}/`).toString();
-      const downloadUrl = new URL(`/files/${fileId}`, `${apiUrl}/`).toString();
+      const publicUrl = new URL(`/${fileId}/`, `https://link.ghostdrop.qzz.io/`).toString();
+      const downloadUrl = new URL(`/files/${fileId}`, `https://link.ghostdrop.qzz.io/`).toString();
 
       await interaction.editReply(
         `✅ Uploaded **${payload.original_name}**\n` +
